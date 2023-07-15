@@ -5,7 +5,8 @@ import {
     useInitializeProviders,
     WalletProvider,
     PROVIDER_ID,
-    algosigner
+    algosigner,
+    useWallet
 } from "@txnlab/use-wallet";
 import Connect from "./components/Connect";
 import { DeflyWalletConnect } from '@blockshake/defly-connect'
@@ -40,7 +41,7 @@ export default function Wallet() {
         ]
     })
     const [isModalOpen, setModalIsOpen] = useState(false)
-
+    const {activeAddress} = useWallet();
     const showModal = () => {
         setModalIsOpen(true)
     };
@@ -49,6 +50,22 @@ export default function Wallet() {
             reconnectProviders(walletProviders);
         }
     }, []);
+    if (!activeAddress) {
+        return (
+            <div
+            style={{
+                ...containerStyle
+            }}
+        >
+            <WalletProvider value={walletProviders} >
+                <div style={{ ...cardStyle }}>
+                    <Connect />
+                </div>
+            </WalletProvider>
+
+        </div>
+        )
+      }
 
     return (
         <div

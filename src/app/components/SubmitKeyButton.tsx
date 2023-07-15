@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { LinkKey } from '../server/AmbientWeather';
+import { useWallet } from '@txnlab/use-wallet';
 export default function SubmitKeyButton({ valid, apiKey, updateMessage, disappearInput }:
     { valid: boolean, apiKey: string, updateMessage: ({ message, color }: { message: string, color: string }) => void, disappearInput: Function }) {
-
+    const { activeAddress } = useWallet();
     return (
         <button
-            onClick={() => handleSubmit(apiKey, updateMessage, disappearInput)}
+            onClick={() => handleSubmit(apiKey, updateMessage, disappearInput, activeAddress!)}
             style={{
                 ...buttonStyle,
                 backgroundColor: valid ? 'cyan' : 'gray',
@@ -19,13 +20,12 @@ export default function SubmitKeyButton({ valid, apiKey, updateMessage, disappea
     );
 }
 
-const handleSubmit = async (apiKey: string, updateMessage: ({ message, color }: { message: string, color: string }) => void, disappearInput: Function) => {
+const handleSubmit = async (apiKey: string, updateMessage: ({ message, color }: { message: string, color: string }) => void, disappearInput: Function, activeAddress: string) => {
     disappearInput(true);
-    updateMessage({ message: 'Verifying Key', color: 'white' });
-    const response: { verified: boolean, data: { message: string, color: string } } = await LinkKey(apiKey);
+    updateMessage({ message: 'Submitting Key...', color: 'white' });
+    const response: { verified: boolean, data: { message: string, color: string } } = await LinkKey(apiKey, activeAddress);
     updateMessage(response.data);
     if (!response.verified) disappearInput(false);
-
 };
 
 
