@@ -21,7 +21,7 @@ export async function LinkKey(key: string, address: string): Promise<{
         }
     }
     try {
-        axios.post(url, { key, address }).then((response) => {
+        await axios.post(url, { key, address }).then((response) => {
 
             const data: {
                 message: string,
