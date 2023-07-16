@@ -32,6 +32,7 @@ export async function LinkKey(key: string, address: string): Promise<{verified: 
             }
         }
     } catch (error) {
+        console.error(error);
         return {
             verified: false,
             data: {
