@@ -1,6 +1,7 @@
 export default function Footer() {
     return (
         <footer
+        className="footer"
             style={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -8,7 +9,7 @@ export default function Footer() {
                 width: '100vw',
                 color: 'white',
                 background: 'rgb(17, 17, 17)',
-                padding: '20px'
+                padding: '20px',
             }}
         >
 

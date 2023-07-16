@@ -13,7 +13,7 @@ const elementStyle = {
   margin: '4px 2px',
   cursor: 'pointer',
   borderRadius: '12px', // Rounded corners
-  width: '150px', // Set the width to a specific value
+
 };
 
 interface ButtonProps {
@@ -100,10 +100,20 @@ export default function Connect() {
             {!anyConnected && <ConnectButton provider={provider} style={elementStyle} />}
 
             {/* Show the account select if the provider is connected */}
-            {provider.isConnected && provider.isActive && provider.accounts.length && (
-              <AccountSelect provider={provider} style={elementStyle} activeAccount={activeAccount} />
-            )}
-
+              {provider.isConnected && provider.isActive && provider.accounts.length && (
+                <AccountSelect
+                provider={provider}
+                style={{
+                  ...elementStyle,
+                  maxWidth: '200px', // Or whatever max width you want
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap'
+                }}
+                activeAccount={activeAccount}
+              />
+              
+              )}
             {/* Show the disconnect button if the provider is connected */}
             {provider.isConnected && <DisconnectButton provider={provider} style={elementStyle} />}
 

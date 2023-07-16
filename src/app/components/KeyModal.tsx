@@ -58,7 +58,7 @@ export default function KeyModal({ isOpen, setOpen }: { isOpen: boolean, setOpen
                 <h1 style={{ fontSize: '25px' }}>Please enter your Ambient Weather API Key below:</h1>
                 <p style={{ fontSize: '12px', marginBottom: '25px' }}>Your API Key only allows access to your devices data, nothing more. You can verify that  <a style={{
                     textDecoration: 'underline',
-                }} href="https://ambientweather.docs.apiary.io/#introduction/authentication">here</a>.</p>
+                }} href="https://ambientweather.docs.apiary.io/#reference/0/devices" target="_blank" >here</a>.</p>
 
                 <KeyInput apiKey={apiKey} setApiKey={setApiKey} setValid={setValid} disappear={disappear} />
 
