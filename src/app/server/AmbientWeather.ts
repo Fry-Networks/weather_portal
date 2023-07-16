@@ -26,7 +26,7 @@ export async function LinkKey(key: string, address: string): Promise<{
                 }
             }
         }).catch((error) => {
-
+            console.log(error.response?.data)
             return {
                 verified: false,
                 data: {
@@ -37,6 +37,7 @@ export async function LinkKey(key: string, address: string): Promise<{
         })
 
     } catch (error) {
+        console.log(error);
         return {
             verified: false,
             data: {
