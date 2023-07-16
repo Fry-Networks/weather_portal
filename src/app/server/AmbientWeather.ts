@@ -2,43 +2,54 @@
 import axios from 'axios';
 import 'dotenv/config';
 const url = `http://${process.env.API_HOST}:${process.env.API_PORT}/api/submitkey`;
-export async function LinkKey(key: string, address: string): Promise<{verified: boolean, data: {
-    message: string,
-    color: string
-}}> {
+export async function LinkKey(key: string, address: string): Promise<{
+    verified: boolean, data: {
+        message: string,
+        color: string
+    }
+}> {
     try {
-        const response = await axios.post(url, { key, address });
+        axios.post(url, { key, address }).then((response) => {
 
-        const data: {
-            message: string,
-            status: 'ERROR' | 'SUCCESS',
-        } = response.data;
+            const data: {
+                message: string,
+                status: 'ERROR' | 'SUCCESS',
+            } = response.data;
 
-        if (response.status === 200) {
-            return {
-                verified: true,
-                data: {
-                    message: data.message,
-                    color: data.status === 'ERROR' ? StatusColors.ERROR : StatusColors.SUCCESS
+            if (response.status === 200) {
+                return {
+                    verified: true,
+                    data: {
+                        message: data.message,
+                        color: data.status === 'ERROR' ? StatusColors.ERROR : StatusColors.SUCCESS
+                    }
                 }
             }
-        } else {
+        }).catch((error) => {
+
             return {
                 verified: false,
                 data: {
-                    message: data.message,
-                    color: data.status === 'ERROR' ? StatusColors.ERROR : StatusColors.SUCCESS
+                    message: error.response?.data.message,
+                    color: error.response?.data.status === 'ERROR' ? StatusColors.ERROR : StatusColors.SUCCESS
                 }
             }
-        }
+        })
+
     } catch (error) {
-        console.error(error);
         return {
             verified: false,
             data: {
                 message: 'We were unable to verify your key. Please try again later, if the problem persists, contact simon.',
                 color: StatusColors.ERROR
             }
+        }
+    }
+    return {
+        verified: false,
+        data: {
+            message: 'We were unable to verify your key. Please try again later, if the problem persists, contact simon.',
+            color: StatusColors.ERROR
         }
     }
 }
