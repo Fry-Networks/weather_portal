@@ -77,7 +77,7 @@ export default function Wallet() {
                 <div style={{ ...cardStyle }}>
                     <Connect />
                     <OpenButton showModal={showModal}/>
-                    <KeyModal isOpen={isModalOpen} />
+                    <KeyModal isOpen={isModalOpen} setOpen={setModalIsOpen}/>
 
                 </div>
             </WalletProvider>

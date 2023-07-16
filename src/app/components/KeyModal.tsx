@@ -4,7 +4,7 @@ import KeyInput from "./KeyInput";
 import SubmitKeyButton from "./SubmitKeyButton";
 
 const logo = "https://ambientweather.com/media/logo/stores/8/ambientweather-logo2.png"
-export default function KeyModal({ isOpen }: { isOpen: boolean }) {
+export default function KeyModal({ isOpen, setOpen }: { isOpen: boolean, setOpen: Function }) {
     const [apiKey, setApiKey] = useState('');
     const [valid, setValid] = useState(false);
     const [message, updateMessage] = useState({ message: '', color: 'white' });
@@ -24,17 +24,33 @@ export default function KeyModal({ isOpen }: { isOpen: boolean }) {
                     right: 'auto',
                     bottom: 'auto',
                     marginRight: '-50%',
-                    transform: 'translate(-50%, -50%)'
+                    transform: 'translate(-50%, -50%)',
+                    display: 'grid',
                 }
             }}
         >
+            <button style={{
+                fontSize: '20px',
+                justifySelf: 'flex-end',
+                borderRadius: '50%',
+                borderColor: 'white',
+                borderInlineColor: 'white',
+                borderWidth: '1px',  // Add this line
+                borderStyle: 'solid',  // Add this line
+                boxShadow: 'none',
 
+            }}
+                onClick={() => {
+                    setOpen(false);
+                }}
+            >X</button>
             <div style={{
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
             }}>
+
                 <img src={logo} alt="Ambient Weather Logo" style={{
                     width: '70%',
                     marginBottom: '20px'
@@ -44,11 +60,11 @@ export default function KeyModal({ isOpen }: { isOpen: boolean }) {
                     textDecoration: 'underline',
                 }} href="https://ambientweather.docs.apiary.io/#introduction/authentication">here</a>.</p>
 
-                <KeyInput apiKey={apiKey} setApiKey={setApiKey} setValid={setValid} disappear={disappear}/>
+                <KeyInput apiKey={apiKey} setApiKey={setApiKey} setValid={setValid} disappear={disappear} />
 
-                <SubmitKeyButton valid={valid} apiKey={apiKey} updateMessage={updateMessage} disappearInput={setDisappear}/>
+                <SubmitKeyButton valid={valid} apiKey={apiKey} updateMessage={updateMessage} disappearInput={setDisappear} />
 
-                <p style={{ color: message.color, fontSize: '12px', marginTop: '10px' }}>{message.message}</p>
+                <p style={{ color: message.color, fontSize: '17px', marginTop: '10px', fontWeight: 'bolder'}}>{message.message}</p>
 
             </div>
 

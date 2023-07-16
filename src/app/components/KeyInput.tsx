@@ -9,7 +9,7 @@ const KeyInput = ({ apiKey, setApiKey, setValid, disappear }: { apiKey: string, 
     data-form-type="other"
     onChange={e => {
       setApiKey(e.target.value);
-      setValid(/[a-z|0-9]{64}/.test(e.target.value));
+      setValid(/^[a-z0-9]{64}$/.test(e.target.value));
     }}
     placeholder="Enter your API Key"
     style={keyInputStyle}

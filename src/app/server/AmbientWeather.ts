@@ -8,20 +8,26 @@ export async function LinkKey(key: string, address: string): Promise<{verified: 
 }}> {
     try {
         const response = await axios.post(url, { key, address });
+
+        const data: {
+            message: string,
+            status: 'ERROR' | 'SUCCESS',
+        } = response.data;
+
         if (response.status === 200) {
             return {
                 verified: true,
                 data: {
-                    message: response.data.message,
-                    color: response.data.color
+                    message: data.message,
+                    color: data.status === 'ERROR' ? StatusColors.ERROR : StatusColors.SUCCESS
                 }
             }
         } else {
             return {
                 verified: false,
                 data: {
-                    message: response.data.message,
-                    color: response.data.color
+                    message: data.message,
+                    color: data.status === 'ERROR' ? StatusColors.ERROR : StatusColors.SUCCESS
                 }
             }
         }
@@ -30,8 +36,13 @@ export async function LinkKey(key: string, address: string): Promise<{verified: 
             verified: false,
             data: {
                 message: 'We were unable to verify your key. Please try again later, if the problem persists, contact simon.',
-                color: 'red'
+                color: StatusColors.ERROR
             }
         }
     }
+}
+
+enum StatusColors {
+    ERROR = 'rgb(212, 20, 6)',
+    SUCCESS = 'rgb(0, 128, 0)'
 }
