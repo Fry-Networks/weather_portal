@@ -105,7 +105,7 @@ export default function Connect() {
                 provider={provider}
                 style={{
                   ...elementStyle,
-                  maxWidth: '200px', // Or whatever max width you want
+                  maxWidth: '300px', // Or whatever max width you want
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
                   whiteSpace: 'nowrap'
