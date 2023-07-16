@@ -8,6 +8,18 @@ export async function LinkKey(key: string, address: string): Promise<{
         color: string
     }
 }> {
+    let returnData: {
+        verified: boolean, data: {
+            message: string,
+            color: string
+        }
+    } = {
+        verified: false,
+        data: {
+            message: 'We were unable to verify your key. Please try again later, if the problem persists, contact simon.',
+            color: StatusColors.ERROR
+        }
+    }
     try {
         axios.post(url, { key, address }).then((response) => {
 
@@ -17,7 +29,7 @@ export async function LinkKey(key: string, address: string): Promise<{
             } = response.data;
 
             if (response.status === 200) {
-                return {
+                returnData ={
                     verified: true,
                     data: {
                         message: data.message,
@@ -27,7 +39,7 @@ export async function LinkKey(key: string, address: string): Promise<{
             }
         }).catch((error) => {
             console.log(error.response?.data)
-            return {
+            returnData = {
                 verified: false,
                 data: {
                     message: error.response?.data.message,
@@ -38,7 +50,7 @@ export async function LinkKey(key: string, address: string): Promise<{
 
     } catch (error) {
         console.log(error);
-        return {
+        returnData ={
             verified: false,
             data: {
                 message: 'We were unable to verify your key. Please try again later, if the problem persists, contact simon.',
@@ -46,13 +58,7 @@ export async function LinkKey(key: string, address: string): Promise<{
             }
         }
     }
-    return {
-        verified: false,
-        data: {
-            message: 'We were unable to verify your key. Please try again later, if the problem persists, contact simon.',
-            color: StatusColors.ERROR
-        }
-    }
+    return returnData;
 }
 
 enum StatusColors {
