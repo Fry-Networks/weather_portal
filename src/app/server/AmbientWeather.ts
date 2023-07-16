@@ -39,10 +39,11 @@ export async function LinkKey(key: string, address: string): Promise<{
             }
         }).catch((error) => {
             console.log(error.response?.data)
+            const message = error.response?.status === 429 ? 'You have made too many requests, please try again later.' : error.response?.data.message;
             returnData = {
                 verified: false,
                 data: {
-                    message: error.response?.data.message,
+                    message: message,
                     color: error.response?.data.status === 'ERROR' ? StatusColors.ERROR : StatusColors.SUCCESS
                 }
             }
