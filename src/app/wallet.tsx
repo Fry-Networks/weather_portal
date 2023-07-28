@@ -31,9 +31,9 @@ export default function Wallet() {
                 clientOptions: {
                     projectId: '74761852c2f607c540bb116a1bc9f011',
                     metadata: {
-                        name: 'Example Dapp',
-                        description: 'Example Dapp',
-                        url: '#',
+                        name: 'Fry Foundation',
+                        description: 'Authenticate yourself',
+                        url: 'https://weather.fryfoundation.com',
                         icons: ['https://walletconnect.com/walletconnect-logo.png']
                     }
                 }
