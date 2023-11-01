@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function OpenButton({ showModal }: { showModal: Function }) {
+export default function OpenButton({ showModal,text }: { showModal: Function,text:string }) {
 
   return (
     <button
@@ -12,7 +12,7 @@ export default function OpenButton({ showModal }: { showModal: Function }) {
         alignSelf: 'center',
       }}
     >
-      Link your Ambient Weather account
+      {text}
     </button>
   );
 }
