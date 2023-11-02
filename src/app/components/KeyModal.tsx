@@ -92,6 +92,7 @@ export function KeyModal({
           setApiKey={setApiKey}
           setValid={setValid}
           disappear={disappear}
+          type="ambient"
         />
 
         <SubmitKeyButton
@@ -195,6 +196,7 @@ export function EcowittKeyModal({
           setApiKey={setApiKey}
           setValid={setValid}
           disappear={disappear}
+          type="ecowitt"
         />
 
         <SubmitEcoWittKeyButton

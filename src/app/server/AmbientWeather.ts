@@ -29,7 +29,7 @@ export async function LinkKey(
   };
   try {
     await axios
-      .post(ambientUrl, { key, address })
+      .post(url, { key, address })
       .then((response) => {
         const data: {
           message: string;
@@ -108,7 +108,7 @@ export async function AmbientLinkKey(
   };
   try {
     await axios
-      .post(url, { key, address })
+      .post(ambientUrl, { key, address })
       .then((response) => {
         const data: {
           message: string;
