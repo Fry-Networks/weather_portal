@@ -5,6 +5,7 @@ const url = `http://${process.env.API_HOST}:${process.env.API_PORT}/api/submitEc
 const ambientUrl = `http://${process.env.API_HOST}:${process.env.API_PORT}/api/submitkey`;
 export async function LinkKey(
   key: string,
+  appKey: string,
   address: string
 ): Promise<{
   verified: boolean;
@@ -29,7 +30,7 @@ export async function LinkKey(
   };
   try {
     await axios
-      .post(ambientUrl, { key, address })
+      .post(url, { key, app_key: appKey, address })
       .then((response) => {
         const data: {
           message: string;
@@ -108,7 +109,7 @@ export async function AmbientLinkKey(
   };
   try {
     await axios
-      .post(url, { key, address })
+      .post(ambientUrl, { key, address })
       .then((response) => {
         const data: {
           message: string;

@@ -61,11 +61,15 @@ const handleSubmit = async (
 
 export function SubmitEcoWittKeyButton({
   valid,
+  appKeyValid,
+  appKey,
   apiKey,
   updateMessage,
   disappearInput,
 }: {
   valid: boolean;
+  appKeyValid: boolean;
+  appKey: string;
   apiKey: string;
   updateMessage: ({
     message,
@@ -82,6 +86,7 @@ export function SubmitEcoWittKeyButton({
       onClick={() =>
         handleEcowittSubmit(
           apiKey,
+          appKey,
           updateMessage,
           disappearInput,
           activeAddress!
@@ -93,15 +98,16 @@ export function SubmitEcoWittKeyButton({
         width: "fit-content",
         alignSelf: "center",
       }}
-      disabled={!valid}
+      disabled={!valid || !appKeyValid}
     >
-      Submit API Key
+      Submit API And App Key
     </button>
   );
 }
 
 const handleEcowittSubmit = async (
   apiKey: string,
+  appKey: string,
   updateMessage: ({
     message,
     color,
@@ -117,7 +123,7 @@ const handleEcowittSubmit = async (
   const response: {
     verified: boolean;
     data: { message: string; color: string };
-  } = await LinkKey(apiKey, activeAddress);
+  } = await LinkKey(apiKey, appKey, activeAddress);
   updateMessage(response.data);
   if (!response.verified) disappearInput(false);
 };

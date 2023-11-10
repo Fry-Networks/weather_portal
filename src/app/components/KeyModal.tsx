@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Modal from "react-modal";
 import KeyInput from "./KeyInput";
 import { SubmitKeyButton, SubmitEcoWittKeyButton } from "./SubmitKeyButton";
+import AppKeyInput from "./AppKeyInput";
 
 const logo =
   "https://ambientweather.com/media/logo/stores/8/ambientweather-logo2.png";
@@ -92,6 +93,7 @@ export function KeyModal({
           setApiKey={setApiKey}
           setValid={setValid}
           disappear={disappear}
+          type="ambient"
         />
 
         <SubmitKeyButton
@@ -124,9 +126,12 @@ export function EcowittKeyModal({
   setOpen: Function;
 }) {
   const [apiKey, setApiKey] = useState("");
+  const [appKey, setAppKey] = useState("");
+  const [appKeyValid, setAppKeyValid] = useState(false);
   const [valid, setValid] = useState(false);
   const [message, updateMessage] = useState({ message: "", color: "white" });
   const [disappear, setDisappear] = useState(false);
+  const [appKeydisappear, setAppKeyDisappear] = useState(false);
   return (
     <Modal
       isOpen={isOpen}
@@ -195,10 +200,20 @@ export function EcowittKeyModal({
           setApiKey={setApiKey}
           setValid={setValid}
           disappear={disappear}
+          type="ecowitt"
+        />
+
+        <AppKeyInput
+          appKey={appKey}
+          setAppKey={setAppKey}
+          setValid={setAppKeyValid}
+          disappear={disappear}
         />
 
         <SubmitEcoWittKeyButton
           valid={valid}
+          appKeyValid={appKeyValid}
+          appKey={appKey}
           apiKey={apiKey}
           updateMessage={updateMessage}
           disappearInput={setDisappear}
