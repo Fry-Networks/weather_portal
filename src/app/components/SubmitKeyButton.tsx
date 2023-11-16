@@ -81,6 +81,7 @@ export function SubmitEcoWittKeyButton({
   disappearInput: Function;
 }) {
   const { activeAddress } = useWallet();
+
   return (
     <button
       onClick={() =>
@@ -94,7 +95,7 @@ export function SubmitEcoWittKeyButton({
       }
       style={{
         ...buttonStyle,
-        backgroundColor: valid ? "cyan" : "gray",
+        backgroundColor: valid && appKeyValid ? "cyan" : "gray",
         width: "fit-content",
         alignSelf: "center",
       }}
