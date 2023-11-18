@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AmbientLinkKey, LinkKey } from "../server/AmbientWeather";
+import { AmbientLinkKey, LinkKey, weatherXMLinkToken } from "../server/AmbientWeather";
 import { useWallet } from "@txnlab/use-wallet";
 export function SubmitKeyButton({
   valid,
@@ -55,6 +55,63 @@ const handleSubmit = async (
     verified: boolean;
     data: { message: string; color: string };
   } = await AmbientLinkKey(apiKey, activeAddress);
+  updateMessage(response.data);
+  if (!response.verified) disappearInput(false);
+};
+export function SubmitWeatherXMKeyButton({
+  valid,
+  token,
+  updateMessage,
+  disappearInput,
+}: {
+  valid: boolean;
+  token: string;
+  updateMessage: ({
+    message,
+    color,
+  }: {
+    message: string;
+    color: string;
+  }) => void;
+  disappearInput: Function;
+}) {
+  const { activeAddress } = useWallet();
+  return (
+    <button
+      onClick={() =>
+        handleWeatherXMSubmit(token, updateMessage, disappearInput, activeAddress!)
+      }
+      style={{
+        ...buttonStyle,
+        backgroundColor: valid ? "cyan" : "gray",
+        width: "fit-content",
+        alignSelf: "center",
+      }}
+      disabled={!valid}
+    >
+      Submit Token
+    </button>
+  );
+}
+
+const handleWeatherXMSubmit = async (
+  token: string,
+  updateMessage: ({
+    message,
+    color,
+  }: {
+    message: string;
+    color: string;
+  }) => void,
+  disappearInput: Function,
+  activeAddress: string
+) => {
+  disappearInput(true);
+  updateMessage({ message: "Submitting Key...", color: "white" });
+  const response: {
+    verified: boolean;
+    data: { message: string; color: string };
+  } = await weatherXMLinkToken(token, activeAddress);
   updateMessage(response.data);
   if (!response.verified) disappearInput(false);
 };
