@@ -125,7 +125,8 @@ export function WeatherXMModal({
   isOpen: boolean;
   setOpen: Function;
 }) {
-  const [token, setToken] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [valid, setValid] = useState(false);
   const [message, updateMessage] = useState({ message: "", color: "white" });
   const [disappear, setDisappear] = useState(false);
@@ -201,16 +202,28 @@ export function WeatherXMModal({
         </p>
 
         <WeatherXMTokenInput
-          token={token}
-          setToken={setToken}
+          token={username}
+          setToken={setUsername}
           setValid={setValid}
           disappear={disappear}
-          type="weatherXM"
+          type=""
+          inputType='text'
+          placeholder="Enter email"
+        />
+        <WeatherXMTokenInput
+          token={password}
+          setToken={setPassword}
+          setValid={setValid}
+          disappear={disappear}
+          type=""
+          inputType='password'
+          placeholder="Enter password"
         />
 
         <SubmitWeatherXMKeyButton
           valid={valid}
-          token={token}
+          username={username}
+          password={password}
           updateMessage={updateMessage}
           disappearInput={setDisappear}
         />

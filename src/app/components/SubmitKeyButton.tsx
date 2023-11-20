@@ -60,12 +60,14 @@ const handleSubmit = async (
 };
 export function SubmitWeatherXMKeyButton({
   valid,
-  token,
+  username,
+  password,
   updateMessage,
   disappearInput,
 }: {
   valid: boolean;
-  token: string;
+  username: string;
+  password: string;
   updateMessage: ({
     message,
     color,
@@ -79,7 +81,7 @@ export function SubmitWeatherXMKeyButton({
   return (
     <button
       onClick={() =>
-        handleWeatherXMSubmit(token, updateMessage, disappearInput, activeAddress!)
+        handleWeatherXMSubmit(username, password, updateMessage, disappearInput, activeAddress!)
       }
       style={{
         ...buttonStyle,
@@ -89,13 +91,14 @@ export function SubmitWeatherXMKeyButton({
       }}
       disabled={!valid}
     >
-      Submit Token
+      Submit
     </button>
   );
 }
 
 const handleWeatherXMSubmit = async (
-  token: string,
+  username: string,
+  password: string,
   updateMessage: ({
     message,
     color,
@@ -111,7 +114,7 @@ const handleWeatherXMSubmit = async (
   const response: {
     verified: boolean;
     data: { message: string; color: string };
-  } = await weatherXMLinkToken(token, activeAddress);
+  } = await weatherXMLinkToken(username, password, activeAddress);
   updateMessage(response.data);
   if (!response.verified) disappearInput(false);
 };

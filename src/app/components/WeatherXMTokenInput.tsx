@@ -6,15 +6,19 @@ const WeatherXMTokenInput = ({
   setValid,
   disappear,
   type,
+  placeholder,
+  inputType
 }: {
   token: string;
   setToken: Function;
   setValid: Function;
   disappear: boolean;
-  type: 'ambient' | 'ecowitt' |'weatherXM';
+  placeholder: string;
+  inputType:string;
+  type: 'ambient' | 'ecowitt' |'weatherXM'|'';
 }) => (
   <input
-    type="text"
+    type={inputType}
     value={token}
     autoComplete="off"
     data-lpignore="true"
@@ -25,7 +29,7 @@ const WeatherXMTokenInput = ({
         ? setValid(/^[A-Za-z0-9\-._~+/]+=*$/.test(e.target.value))
         : setValid(e.target.value !== '');
     }}
-    placeholder="Enter your Token"
+    placeholder={placeholder}
     style={keyInputStyle}
     className={disappear ? 'fade-out' : ''}
   />

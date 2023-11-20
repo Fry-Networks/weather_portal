@@ -163,7 +163,8 @@ export async function AmbientLinkKey(
   return returnData;
 }
 export async function weatherXMLinkToken(
-  token: string,
+  username: string,
+  password: string,
   address: string
 ): Promise<{
   verified: boolean;
@@ -186,9 +187,10 @@ export async function weatherXMLinkToken(
       color: StatusColors.ERROR,
     },
   };
+  debugger;
   try {
     await axios
-      .post(weatherXMUrl, { token, address })
+      .post(weatherXMUrl, { username, password, address })
       .then((response) => {
         const data: {
           message: string;
@@ -233,7 +235,7 @@ export async function weatherXMLinkToken(
       verified: false,
       data: {
         message:
-          "We were unable to verify your Token. Please try again later, if the problem persists, contact simon.",
+          "We were unable to verify your Credentials. Please try again later, if the problem persists, contact simon.",
         color: StatusColors.ERROR,
       },
     };
