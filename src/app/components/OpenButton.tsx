@@ -1,33 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-export default function OpenButton({ showModal,text }: { showModal: Function,text:string }) {
-
+export default function OpenButton({ showModal, text, logo }: { showModal: Function, text: string, logo: string }) {
   return (
-    <button
-      onClick={() => showModal(true)}
-      style={{
-        ...buttonStyle,
-        backgroundColor: 'yellow',
-        width: 'fit-content',
-        alignSelf: 'center',
-      }}
-    >
-      {text}
+    <button onClick={() => showModal(true)} style={buttonStyle}>
+      <div style={{ 
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%'
+      }}>
+        <img src={logo} alt="logo" style={{ 
+          width: '60%', // Adjust as needed
+          height: 'auto',
+          marginBottom: '5px' // Space between logo and label
+        }} />
+        <span style={{ 
+          fontSize: '12px',
+          color: 'white',
+          textAlign: 'center'
+        }}>{text}</span>
+      </div>
     </button>
   );
 }
 
 const buttonStyle = {
-  backgroundColor: 'yellow',
+  width: '100px', 
+  height: '100px', 
   border: 'none',
-  color: 'black',
-  padding: '15px 32px',
-  textDecoration: 'none',
-  display: 'inline-block',
-  fontSize: '16px',
-  margin: '4px 2px',
+  display: 'flex',
+  alignItems: 'center', 
+  justifyContent: 'center', 
   cursor: 'pointer',
   borderRadius: '5px',
+  background: 'none',
+  padding: 0,
+  margin: '4px 2px',
 };
-
-

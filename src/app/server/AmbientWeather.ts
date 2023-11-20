@@ -36,8 +36,8 @@ export async function LinkKey(
           message: string;
           status: "ERROR" | "SUCCESS";
         } = response.data;
-
-        if (response.status === 200) {
+        
+        if (response && response.status && response.status === 200) {
           returnData = {
             verified: true,
             data: {
@@ -48,15 +48,36 @@ export async function LinkKey(
                   : StatusColors.SUCCESS,
             },
           };
+        } else {
+          returnData = {
+            verified: false,
+            data: {
+              message: response.status ? 
+              response.status === 429
+                ? "You have made too many requests, please try again later."
+                : response?.data.message : "We were unable to verify your key. Please try again later, if the problem persists, contact simon.",
+              color: StatusColors.ERROR,
+            },
+          };
         }
       })
       .catch((error) => {
-        console.log(error.response?.data);
+        if(!error.response) {
+          returnData = {
+            verified: false,
+            data: {
+              message: "We were unable to verify your key. Please try again later, if the problem persists, contact simon.",
+              color: StatusColors.ERROR,
+            },
+          };
+          return returnData;
+        }
         const message =
-          error.response?.status === 429
-            ? "You have made too many requests, please try again later."
-            : error.response?.data.message;
-        const color = error.response?.data.status
+        error.response.status ? 
+        error.response?.status === 429
+          ? "You have made too many requests, please try again later."
+          : error.response?.data.message : "We were unable to verify your key. Please try again later, if the problem persists, contact simon.";
+      const color = error.response?.data.status
           ? error.response?.data.status === "ERROR"
             ? StatusColors.ERROR
             : StatusColors.SUCCESS
@@ -132,9 +153,10 @@ export async function AmbientLinkKey(
       .catch((error) => {
         console.log(error.response?.data);
         const message =
+        error.response.status ? 
           error.response?.status === 429
             ? "You have made too many requests, please try again later."
-            : error.response?.data.message;
+            : error.response?.data.message : "We were unable to verify your key. Please try again later, if the problem persists, contact simon.";
         const color = error.response?.data.status
           ? error.response?.data.status === "ERROR"
             ? StatusColors.ERROR

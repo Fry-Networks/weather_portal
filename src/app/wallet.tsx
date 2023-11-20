@@ -16,7 +16,8 @@ import MyAlgoConnect from "@randlabs/myalgo-connect";
 import { WalletConnectModalSign } from "@walletconnect/modal-sign-html";
 
 import OpenButton from "./components/OpenButton";
-import { KeyModal, EcowittKeyModal } from "./components/KeyModal";
+import { AmbientModal } from "./components/KeyModals/AmbientModal";
+import { EcowittModal } from "./components/KeyModals/EcowittModal";
 
 export default function Wallet() {
   const walletProviders = useInitializeProviders({
@@ -79,19 +80,23 @@ export default function Wallet() {
       <WalletProvider value={walletProviders}>
         <div style={{ ...cardStyle, width: "100vw" }}>
           <Connect />
-          <OpenButton
-            showModal={showModal}
-            text="Link your Ambient Weather account"
-          />
-          <KeyModal isOpen={isModalOpen} setOpen={setModalIsOpen} />
-          <OpenButton
-            showModal={showEcowittModal}
-            text="Link your Ecowitt Weather account"
-          />
-          <EcowittKeyModal
-            isOpen={isEcowittModalOpen}
-            setOpen={setIsEcowittModalOpen}
-          />
+          <div style={{flexDirection: "row", display: "flex", justifyContent: "space-evenly"}}>
+            <OpenButton
+              showModal={showModal}
+              text="Ambient"
+              logo="/ambient.png"
+            />
+            <AmbientModal isOpen={isModalOpen} setOpen={setModalIsOpen} />
+            <OpenButton
+              showModal={showEcowittModal}
+              text="Ecowitt"
+              logo="/ecowitt.png"
+            />
+            <EcowittModal
+              isOpen={isEcowittModalOpen}
+              setOpen={setIsEcowittModalOpen}
+            />
+          </div>
         </div>
       </WalletProvider>
     </div>
