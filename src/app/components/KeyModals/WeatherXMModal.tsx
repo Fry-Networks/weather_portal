@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import Modal from "react-modal";
-import KeyInput from "./KeyInput";
-import { SubmitKeyButton, SubmitEcoWittKeyButton, SubmitWeatherXMKeyButton } from "./SubmitKeyButton";
-import AppKeyInput from "./AppKeyInput";
-import WeatherXMTokenInput from "./WeatherXMTokenInput";
-export default function WeatherXMModal({
+import KeyInput from "../KeyInput";
+import { SubmitKeyButton, SubmitEcoWittKeyButton, SubmitWeatherXMKeyButton } from "../SubmitKeyButton";
+import AppKeyInput from "../AppKeyInput";
+import WeatherXMTokenInput from "../WeatherXMTokenInput";
+export function WeatherXMModal({
     isOpen,
     setOpen,
   }: {

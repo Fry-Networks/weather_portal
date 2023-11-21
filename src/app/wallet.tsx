@@ -18,7 +18,7 @@ import { WalletConnectModalSign } from "@walletconnect/modal-sign-html";
 import OpenButton from "./components/OpenButton";
 import { AmbientModal } from "./components/KeyModals/AmbientModal";
 import { EcowittModal } from "./components/KeyModals/EcowittModal";
-import WeatherXMModal from "./components/WeatherXMModal";
+import {WeatherXMModal} from "./components/KeyModals/WeatherXMModal";
 
 export default function Wallet() {
   const walletProviders = useInitializeProviders({
