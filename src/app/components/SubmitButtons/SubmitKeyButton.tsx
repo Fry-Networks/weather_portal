@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AmbientLinkKey, LinkKey, weatherXMLinkToken } from "../server/AmbientWeather";
+import { AmbientLinkKey, LinkKey, weatherXMLinkToken } from "../../server/AmbientWeather";
 import { useWallet } from "@txnlab/use-wallet";
 export function SubmitKeyButton({
   valid,
