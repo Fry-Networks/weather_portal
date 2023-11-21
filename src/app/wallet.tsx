@@ -18,6 +18,7 @@ import { WalletConnectModalSign } from "@walletconnect/modal-sign-html";
 import OpenButton from "./components/OpenButton";
 import { AmbientModal } from "./components/KeyModals/AmbientModal";
 import { EcowittModal } from "./components/KeyModals/EcowittModal";
+import WeatherXMModal from "./components/WeatherXMModal";
 
 export default function Wallet() {
   const walletProviders = useInitializeProviders({
@@ -43,12 +44,16 @@ export default function Wallet() {
   });
   const [isModalOpen, setModalIsOpen] = useState(false);
   const [isEcowittModalOpen, setIsEcowittModalOpen] = useState(false);
+  const [isWeatherXMModalOpen, setIsWeatherXMModalOpen] = useState(false);
   const { activeAddress } = useWallet();
   const showModal = () => {
     setModalIsOpen(true);
   };
   const showEcowittModal = () => {
     setIsEcowittModalOpen(true);
+  };
+  const showWeatherXMModal = () => {
+    setIsWeatherXMModalOpen(true);
   };
   useEffect(() => {
     if (walletProviders !== null) {
@@ -96,7 +101,17 @@ export default function Wallet() {
               isOpen={isEcowittModalOpen}
               setOpen={setIsEcowittModalOpen}
             />
+            <OpenButton
+            showModal={showWeatherXMModal}
+            text="Weather XM"
+            logo="/weatherxm.png"
+          />
+          <WeatherXMModal
+            isOpen={isWeatherXMModalOpen}
+            setOpen={setIsWeatherXMModalOpen}
+          />
           </div>
+          
         </div>
       </WalletProvider>
     </div>
