@@ -88,14 +88,10 @@ export default function Connect() {
             flexBasis: 'auto', // Each item will shrink or grow as necessary
             marginBottom: '20px' // Add a margin to prevent items from sticking together when they wrap
           }}>
-
-
             <h4 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <img width={30} height={30} alt="" src={provider.metadata.icon} style={{ marginRight: '10px' }} />
               {provider.metadata.name} {provider.isActive && "[active]"}
             </h4>
-
-
             {/* Show the connect button if no provider is connected */}
             {!anyConnected && <ConnectButton provider={provider} style={elementStyle} />}
 
@@ -112,15 +108,9 @@ export default function Connect() {
                 }}
                 activeAccount={activeAccount}
               />
-              
               )}
             {/* Show the disconnect button if the provider is connected */}
             {provider.isConnected && <DisconnectButton provider={provider} style={elementStyle} />}
-
-
-
-
-
           </div>
         )
       ))}

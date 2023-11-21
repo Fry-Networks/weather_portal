@@ -16,7 +16,9 @@ import MyAlgoConnect from "@randlabs/myalgo-connect";
 import { WalletConnectModalSign } from "@walletconnect/modal-sign-html";
 
 import OpenButton from "./components/OpenButton";
-import { KeyModal, EcowittKeyModal, WeatherXMModal } from "./components/KeyModal";
+import { KeyModal } from "./components/KeyModal";
+import EcowittKeyModal from "./components/EcowittKeyModal";
+import WeatherXMModal from "./components/WeatherXMModal";
 
 export default function Wallet() {
   const walletProviders = useInitializeProviders({
