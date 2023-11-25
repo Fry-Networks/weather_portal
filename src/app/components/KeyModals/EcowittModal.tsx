@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import Modal from "react-modal";
-import KeyInput from "../KeyInput";
+import KeyInput from "../Inputs/KeyInput";
 import { SubmitKeyButton } from "../SubmitButtons/SubmitEcowitt";
-import AppKeyInput from "../AppKeyInput";
+import AppKeyInput from "../Inputs/AppKeyInput";
 
 
 export function EcowittModal({
