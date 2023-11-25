@@ -3,8 +3,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'FRY Ambient Weather Portal',
-  description: 'Submit your Ambient Weather API Key to link your account',
+  title: 'FRY Weather Portal',
+  description: 'Link your weather devices to your wallet and earn $FRY',
 }
 export default function RootLayout({
   children,

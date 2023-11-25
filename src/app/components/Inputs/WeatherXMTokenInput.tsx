@@ -14,8 +14,8 @@ const WeatherXMTokenInput = ({
   setValid: Function;
   disappear: boolean;
   placeholder: string;
-  inputType:string;
-  type: 'ambient' | 'ecowitt' |'weatherXM'|'';
+  inputType: string;
+  type: 'email' | 'password';
 }) => (
   <input
     type={inputType}
@@ -25,8 +25,10 @@ const WeatherXMTokenInput = ({
     data-form-type="other"
     onChange={(e) => {
       setToken(e.target.value);
-      type === 'weatherXM'
-        ? setValid(/^[A-Za-z0-9\-._~+/]+=*$/.test(e.target.value))
+      console.log(e.target.value);
+      console.log(/\S+@\S+\.\S+/g.test(e.target.value));
+      type === 'email'
+        ? setValid(/\S+@\S+\.\S+/g.test(e.target.value))
         : setValid(e.target.value !== '');
     }}
     placeholder={placeholder}

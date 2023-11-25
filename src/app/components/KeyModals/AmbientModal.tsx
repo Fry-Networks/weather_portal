@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import Modal from "react-modal";
 import KeyInput from "../Inputs/KeyInput";
 import { SubmitKeyButton } from "../SubmitButtons/SubmitAmbient";
-import AppKeyInput from "../Inputs/AppKeyInput";
 
 
 const logo =
@@ -21,12 +20,17 @@ export function AmbientModal({
   return (
     <Modal
       isOpen={isOpen}
+      onRequestClose={() => setOpen(false)} // Handle closing of the modal
       style={{
         overlay: {
           backgroundColor: "rgba(0, 0, 0, 0.75)",
+          transition: 'opacity 300ms ease-in-out',
+          animation: "fade 2s linear",
         },
         content: {
           backgroundColor: "RGB(12, 167, 229)",
+          transition: 'opacity 300ms ease-in-out',
+          animation: "fade 2s linear",
           color: "white",
           top: "50%",
           left: "50%",

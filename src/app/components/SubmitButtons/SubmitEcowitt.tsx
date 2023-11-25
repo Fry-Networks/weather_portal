@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { LinkKey } from "../../server/AmbientWeather";
 import { useWallet } from "@txnlab/use-wallet";
+import { EcowittLinkKey } from "@/app/server/Ecowitt";
 
 export function SubmitKeyButton({
     valid,
@@ -43,7 +43,7 @@ export function SubmitKeyButton({
         }}
         disabled={!valid || !appKeyValid}
       >
-        Submit API And App Key
+        Submit
       </button>
     );
   }
@@ -66,7 +66,7 @@ export function SubmitKeyButton({
     const response: {
       verified: boolean;
       data: { message: string; color: string };
-    } = await LinkKey(apiKey, appKey, activeAddress);
+    } = await EcowittLinkKey(apiKey, appKey, activeAddress);
     updateMessage(response.data);
     if (!response.verified) disappearInput(false);
   };

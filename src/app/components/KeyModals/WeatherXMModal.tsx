@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
-import KeyInput from "../Inputs/KeyInput";
-import { SubmitKeyButton, SubmitEcoWittKeyButton, SubmitWeatherXMKeyButton } from "../SubmitButtons/SubmitKeyButton";
-import AppKeyInput from "../Inputs/AppKeyInput";
+import { SubmitWeatherXMKeyButton } from "../SubmitButtons/SubmitWeatherXM";
 import WeatherXMTokenInput from "../Inputs/WeatherXMTokenInput";
 export function WeatherXMModal({
     isOpen,
@@ -13,7 +11,8 @@ export function WeatherXMModal({
   }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [valid, setValid] = useState(false);
+    const [validEmail, setEmailValid] = useState(false);
+    const [validPassword, setPasswordValid] = useState(false);
     const [message, updateMessage] = useState({ message: "", color: "white" });
     const [disappear, setDisappear] = useState(false);
     return (
@@ -90,24 +89,24 @@ export function WeatherXMModal({
           <WeatherXMTokenInput
             token={username}
             setToken={setUsername}
-            setValid={setValid}
+            setValid={setEmailValid}
             disappear={disappear}
-            type=""
+            type="email"
             inputType='text'
             placeholder="Enter email"
           />
           <WeatherXMTokenInput
             token={password}
             setToken={setPassword}
-            setValid={setValid}
+            setValid={setPasswordValid}
             disappear={disappear}
-            type=""
+            type="password"
             inputType='password'
             placeholder="Enter password"
           />
   
           <SubmitWeatherXMKeyButton
-            valid={valid}
+            valid={validEmail && validPassword}
             username={username}
             password={password}
             updateMessage={updateMessage}

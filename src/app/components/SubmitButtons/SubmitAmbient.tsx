@@ -34,7 +34,7 @@ export function SubmitKeyButton({
         }}
         disabled={!valid}
       >
-        Submit API Key
+        Submit
       </button>
     );
   }

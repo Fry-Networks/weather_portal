@@ -11,7 +11,7 @@ export default function OpenButton({ showModal, text, logo }: { showModal: Funct
         height: '100%'
       }}>
         <img src={logo} alt="logo" style={{ 
-          width: '60%', // Adjust as needed
+          width: '80%', // Adjust as needed
           height: 'auto',
           marginBottom: '5px' // Space between logo and label
         }} />
@@ -26,8 +26,8 @@ export default function OpenButton({ showModal, text, logo }: { showModal: Funct
 }
 
 const buttonStyle = {
-  width: '100px', 
-  height: '100px', 
+  width: '200px', 
+  height: '200px', 
   border: 'none',
   display: 'flex',
   alignItems: 'center', 
