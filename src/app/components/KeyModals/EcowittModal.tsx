@@ -65,10 +65,10 @@ export function EcowittModal({
         }}
       >
         <h1 style={{ fontSize: "25px" }}>
-          Please enter your Ecowitt Weather API Key below:
+          Please enter your Ecowitt Weather API and APP Key below:
         </h1>
         <p style={{ fontSize: "12px", marginBottom: "25px" }}>
-          Your API Key only allows access to your devices data, nothing more.
+          Your API/APP Keys only allows access to your devices data, nothing more.
           You can verify that{" "}
           <a
             style={{

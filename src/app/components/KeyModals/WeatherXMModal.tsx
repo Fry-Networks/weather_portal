@@ -72,18 +72,18 @@ export function WeatherXMModal({
             Please enter your Weather XM credentials below:
           </h1>
           <p style={{ fontSize: "12px", marginBottom: "25px" }}>
-            Your credentials only allows access to your devices data, nothing more.
-            You can verify that{" "}
-            {/* <a
+            Your credentials allows access to your devices data.
+            You can verify which information we have access to {" "}
+             <a
               style={{
                 textDecoration: "underline",
               }}
-              href="https://ambientweather.docs.apiary.io/#reference/0/devices"
+              href="https://api.weatherxm.com/api/v1/docs/#/"
               target="_blank"
             >
               here
             </a>
-            . */}
+            . 
           </p>
   
           <WeatherXMTokenInput
