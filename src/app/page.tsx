@@ -24,7 +24,7 @@ export default function Home() {
         <h1
           className='text-4xl text-left text-white align-middle'
         >
-          Ambient Weather Portal
+          Weather Portal
         </h1>
       </div>
       <Wallet />
