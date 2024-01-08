@@ -25,8 +25,6 @@ const WeatherXMTokenInput = ({
     data-form-type="other"
     onChange={(e) => {
       setToken(e.target.value);
-      console.log(e.target.value);
-      console.log(/\S+@\S+\.\S+/g.test(e.target.value));
       type === 'email'
         ? setValid(/\S+@\S+\.\S+/g.test(e.target.value))
         : setValid(e.target.value !== '');
