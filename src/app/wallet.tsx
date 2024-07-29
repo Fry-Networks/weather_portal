@@ -1,24 +1,24 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { DeflyWalletConnect } from "@blockshake/defly-connect";
+import { DaffiWalletConnect } from "@daffiwallet/connect";
+import { PeraWalletConnect } from "@perawallet/connect";
+import MyAlgoConnect from "@randlabs/myalgo-connect";
 import {
+  PROVIDER_ID,
   reconnectProviders,
   useInitializeProviders,
-  WalletProvider,
-  PROVIDER_ID,
-  algosigner,
   useWallet,
+  WalletProvider
 } from "@txnlab/use-wallet";
-import Connect from "./components/Connect";
-import { DeflyWalletConnect } from "@blockshake/defly-connect";
-import { PeraWalletConnect } from "@perawallet/connect";
-import { DaffiWalletConnect } from "@daffiwallet/connect";
-import MyAlgoConnect from "@randlabs/myalgo-connect";
 import { WalletConnectModalSign } from "@walletconnect/modal-sign-html";
+import { useEffect, useState } from "react";
+import Connect from "./components/Connect";
 
-import OpenButton from "./components/OpenButton";
 import { AmbientModal } from "./components/KeyModals/AmbientModal";
 import { EcowittModal } from "./components/KeyModals/EcowittModal";
-import {WeatherXMModal} from "./components/KeyModals/WeatherXMModal";
+import { SensecapModal } from "./components/KeyModals/SensecapModal";
+import { WeatherXMModal } from "./components/KeyModals/WeatherXMModal";
+import OpenButton from "./components/OpenButton";
 
 export default function Wallet() {
   const walletProviders = useInitializeProviders({
@@ -45,6 +45,8 @@ export default function Wallet() {
   const [isModalOpen, setModalIsOpen] = useState(false);
   const [isEcowittModalOpen, setIsEcowittModalOpen] = useState(false);
   const [isWeatherXMModalOpen, setIsWeatherXMModalOpen] = useState(false);
+  const [isSensecapModalOpen, setIsSensecapModalOpen] = useState(false);
+
   const { activeAddress } = useWallet();
   const showModal = () => {
     setModalIsOpen(true);
@@ -54,6 +56,9 @@ export default function Wallet() {
   };
   const showWeatherXMModal = () => {
     setIsWeatherXMModalOpen(true);
+  };
+  const showSensecapModal = () => {
+    setIsSensecapModalOpen(true);
   };
   useEffect(() => {
     if (walletProviders !== null) {
@@ -109,6 +114,15 @@ export default function Wallet() {
           <WeatherXMModal
             isOpen={isWeatherXMModalOpen}
             setOpen={setIsWeatherXMModalOpen}
+          />
+          <OpenButton
+            showModal={showSensecapModal}
+            text="Sensecap"
+            logo="/sensecap.webp"
+          />
+          <SensecapModal
+            isOpen={isSensecapModalOpen}
+            setOpen={setIsSensecapModalOpen}
           />
           </div>
           
