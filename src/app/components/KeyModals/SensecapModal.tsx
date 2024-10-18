@@ -48,7 +48,7 @@ export const SensecapModal: React.FC<SensecapModalProps> = ({
           token={deviceId}
           setToken={setDeviceId}
           inputType="id"
-          placeholder="Enter Device Id"
+          placeholder="Enter Device EUI"
         />
         <SensecapInput
           token={username}

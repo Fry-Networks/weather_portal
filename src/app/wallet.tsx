@@ -99,7 +99,7 @@ export default function Wallet() {
             <AmbientModal isOpen={isModalOpen} setOpen={setModalIsOpen} />
             <OpenButton
               showModal={showEcowittModal}
-              text="Ecowitt / Froggit"
+              text="Ecowitt / Froggit / Misol"
               logo="/ecowitt.png"
             />
             <EcowittModal
