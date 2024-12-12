@@ -19,6 +19,7 @@ import { EcowittModal } from "./components/KeyModals/EcowittModal";
 import { SensecapModal } from "./components/KeyModals/SensecapModal";
 import { WeatherXMModal } from "./components/KeyModals/WeatherXMModal";
 import OpenButton from "./components/OpenButton";
+import { LacrosseModal } from "./components/KeyModals/LacrosseModal";
 
 export default function Wallet() {
   const walletProviders = useInitializeProviders({
@@ -46,6 +47,7 @@ export default function Wallet() {
   const [isEcowittModalOpen, setIsEcowittModalOpen] = useState(false);
   const [isWeatherXMModalOpen, setIsWeatherXMModalOpen] = useState(false);
   const [isSensecapModalOpen, setIsSensecapModalOpen] = useState(false);
+  const [isLacrosseModalOpen, setIsLacrosseModalOpen] = useState(false);
 
   const { activeAddress } = useWallet();
   const showModal = () => {
@@ -59,6 +61,9 @@ export default function Wallet() {
   };
   const showSensecapModal = () => {
     setIsSensecapModalOpen(true);
+  };
+  const showLacrosseModal = () => {
+    setIsLacrosseModalOpen(true);
   };
   useEffect(() => {
     if (walletProviders !== null) {
@@ -123,6 +128,15 @@ export default function Wallet() {
           <SensecapModal
             isOpen={isSensecapModalOpen}
             setOpen={setIsSensecapModalOpen}
+          />
+          <OpenButton
+            showModal={showLacrosseModal}
+            text="Lacrosse"
+            logo="/lacrosse.jpg"
+          />
+          <LacrosseModal
+            isOpen={isLacrosseModalOpen}
+            setOpen={setIsLacrosseModalOpen}
           />
           </div>
           
