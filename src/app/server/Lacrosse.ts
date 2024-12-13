@@ -2,7 +2,7 @@
 import axios from "axios";
 import "dotenv/config";
 import { StatusColors } from "./consts";
-const lacrosseURL = `http://${process.env.API_HOST}:${process.env.API_PORT}/api/submitLacrosseCAPKey`;
+const lacrosseURL = `http://${process.env.API_HOST}:${process.env.API_PORT}/api/getTemperature`;
 export async function LacrosseKey(
     email: string,
     password: string,
